@@ -1,2 +1,3 @@
 # Laptringmang_Thien_20210815
-Bai tap lap trinh mang cua Tran Duc Thien
+Bài tập về nhà ngày 22/04/2024
+Trần Đức Thiện - 20210815

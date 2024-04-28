@@ -28,19 +28,19 @@ void data_process(char buf[]) {
     time_t cur_time = time(NULL);
     if (strstr(buf,"dd/mm/yyyy") != NULL)
     {
-        strftime(buf, 80, "%d-%m-%Y", localtime(&cur_time));
+        strftime(buf, 80, "%d-%m-%Y \n", localtime(&cur_time));
     }
     else if (strstr(buf,"dd/mm/yy") != NULL)
     {
-        strftime(buf, 80, "%d-%m-%y", localtime(&cur_time));
+        strftime(buf, 80, "%d-%m-%y \n", localtime(&cur_time));
     }
     else if (strstr(buf,"mm/dd/yyyy") != NULL)
     {
-        strftime(buf, 80, "%m-%d-%Y", localtime(&cur_time));
+        strftime(buf, 80, "%m-%d-%Y \n", localtime(&cur_time));
     }
     else if (strstr(buf,"mm/dd/yy") != NULL)
     {
-        strftime(buf, 80, "%m-%d-%y", localtime(&cur_time));
+        strftime(buf, 80, "%m-%d-%y \n", localtime(&cur_time));
     }
 }
 
@@ -55,7 +55,7 @@ int main()
     struct sockaddr_in server;
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = htonl(INADDR_ANY);
-    server.sin_port = htons(9000);
+    server.sin_port = htons(9200);
 
     if(bind(listener, (struct sockaddr *)&server, sizeof(server)) < 0) {
         perror("bind() failed!");
@@ -74,7 +74,7 @@ int main()
             while(1)
             {
                 int client = accept(listener, NULL, NULL);
-                printf("New client accepted %d\n", client);
+                printf("New client accepted , number: %d\n", client);
 
                 // nhan du lieu tu client
                 int ret = recv(client, buf, sizeof(buf), 0);

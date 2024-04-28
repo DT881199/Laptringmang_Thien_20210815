@@ -17,7 +17,7 @@ int main()
     struct sockaddr_in server;
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = htonl(INADDR_ANY);
-    server.sin_port = htons(9000);
+    server.sin_port = htons(8000);
 
     if(bind(listener, (struct sockaddr *)&server, sizeof(server)) < 0) {
         perror("bind() failed");
@@ -41,8 +41,10 @@ int main()
                 int ret = recv(client, buf, sizeof(buf), 0);
                 if(ret <= 0)
                     continue;
+
                 buf[ret] = 0;
                 puts(buf);
+
                 char *msg = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<html><body><h1>Xin chao cac ban</h1></body></html>";
                 send(client, msg, strlen(msg), 0);
 
